@@ -1,0 +1,64 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.2.2, pluggy-1.5.0
+rootdir: /home/sammy/dev/school/test-flask
+configfile: pyproject.toml
+plugins: cov-5.0.0
+collected 476 items / 1 skipped
+
+tests/test_appctx.py ..............                                      [  2%]
+tests/test_basic.py .................................................... [ 13%]
+........................................................................ [ 28%]
+...                                                                      [ 29%]
+tests/test_blueprints.py ............................................... [ 39%]
+.............                                                            [ 42%]
+tests/test_cli.py ...............................................ss.s... [ 53%]
+....                                                                     [ 54%]
+tests/test_config.py ...s...............                                 [ 58%]
+tests/test_converters.py ..                                              [ 58%]
+tests/test_helpers.py ................................                   [ 65%]
+tests/test_instance_config.py ..........                                 [ 67%]
+tests/test_json.py ...............................                       [ 74%]
+tests/test_json_tag.py ..............                                    [ 77%]
+tests/test_logging.py ......                                             [ 78%]
+tests/test_regression.py .                                               [ 78%]
+tests/test_reqctx.py .......ss.....                                      [ 81%]
+tests/test_session_interface.py .                                        [ 81%]
+tests/test_signals.py .......                                            [ 83%]
+tests/test_subclassing.py .                                              [ 83%]
+tests/test_templating.py ................................                [ 90%]
+tests/test_testing.py .........................                          [ 95%]
+tests/test_user_error_handler.py .........                               [ 97%]
+tests/test_views.py .............                                        [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name                             Stmts   Miss Branch BrPart  Cover
+------------------------------------------------------------------
+src/flask/__init__.py               48      4      2      1    90%
+src/flask/__main__.py                2      2      0      0     0%
+src/flask/app.py                   390     27    176     18    91%
+src/flask/blueprints.py             31      5      8      2    77%
+src/flask/cli.py                   440     78    172     24    80%
+src/flask/config.py                116      4     52      4    95%
+src/flask/ctx.py                   152     20     38      7    84%
+src/flask/debughelpers.py           90     12     41     12    80%
+src/flask/globals.py                14      0      0      0   100%
+src/flask/helpers.py               117      7     40      4    92%
+src/flask/json/__init__.py          25      3      8      2    85%
+src/flask/json/provider.py          66      6     16      2    90%
+src/flask/json/tag.py              135      0     30      0   100%
+src/flask/logging.py                30      0     13      0   100%
+src/flask/sansio/app.py            236      8     68      4    95%
+src/flask/sansio/blueprints.py     226      4     84      8    96%
+src/flask/sansio/scaffold.py       213     12     44      5    92%
+src/flask/sessions.py              118      3     16      0    98%
+src/flask/signals.py                13      0      0      0   100%
+src/flask/templating.py            110      6     32      8    89%
+src/flask/testing.py               112      4     38      3    95%
+src/flask/typing.py                 21      0      0      0   100%
+src/flask/views.py                  54      1     20      1    97%
+src/flask/wrappers.py               57      1     14      1    97%
+------------------------------------------------------------------
+TOTAL                             2816    207    912    106    90%
+
+
+======================== 470 passed, 7 skipped in 1.05s ========================
