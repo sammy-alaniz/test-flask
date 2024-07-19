@@ -1052,3 +1052,107 @@ def test_blueprint_renaming(app, client) -> None:
     assert client.get("/b/a/").data == b"alt.sub.index2"
     assert client.get("/a/error").data == b"Error"
     assert client.get("/b/error").data == b"Error"
+
+
+# ChatGPT4o ----------------------
+import os
+
+# def test_open_resource(app):
+#     with open(os.path.join(app.root_path, 'test_resource.txt'), 'w') as f:
+#         f.write("This is a test resource file.")
+
+#     with app.open_resource('test_resource.txt') as f:
+#         data = f.read()
+#         assert data == b"This is a test resource file."
+
+#     os.remove(os.path.join(app.root_path, 'test_resource.txt'))
+
+# def test_blueprint_teardown_request(app, client):
+#     teardown_called = False
+
+#     test_bp = flask.Blueprint("test_bp", __name__)
+
+#     @test_bp.teardown_request
+#     def teardown(exc):
+#         nonlocal teardown_called
+#         teardown_called = True
+
+#     @test_bp.route("/")
+#     def index():
+#         return "Hello from the index"
+
+#     app.register_blueprint(test_bp)
+
+#     response = client.get("/")
+#     assert response.status_code == 200
+#     assert teardown_called
+
+# def test_blueprint_add_url_rule_methods(app, client):
+#     test_bp = flask.Blueprint("test_bp", __name__)
+
+#     @test_bp.route("/foo", methods=["GET", "POST"])
+#     def foo():
+#         return "foo"
+
+#     test_bp.add_url_rule("/bar", "bar", foo, methods=["PUT"])
+#     app.register_blueprint(test_bp)
+
+#     assert client.get("/foo").status_code == 200
+#     assert client.post("/foo").status_code == 200
+#     assert client.put("/bar").status_code == 200
+#     assert client.delete("/foo").status_code == 405
+#     assert client.delete("/bar").status_code == 405
+
+# def test_blueprint_register_blueprint_twice(app):
+#     test_bp = flask.Blueprint("test_bp", __name__)
+
+#     @test_bp.route("/")
+#     def index():
+#         return "Hello from the index"
+
+#     app.register_blueprint(test_bp)
+
+#     with pytest.raises(ValueError):
+#         app.register_blueprint(test_bp)
+
+# def test_send_static_file_without_static_folder(app, client):
+#     bp = flask.Blueprint("test", __name__)
+
+#     @bp.route("/static/<path:filename>")
+#     def static(filename):
+#         return bp.send_static_file(filename)
+
+#     app.register_blueprint(bp)
+
+#     with pytest.raises(RuntimeError):
+#         client.get("/static/test.txt")
+
+import pytest
+from flask import Blueprint
+from werkzeug.exceptions import NotFound
+
+# from blueprints import open_resource
+
+# def test_open_resource_valid_file(app, client):
+#     """Test opening a valid resource file."""
+#     bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+#     with open(bp.root_path + "/valid_resource.txt", "w") as f:
+#         f.write("Test data")
+
+#     with bp.open_resource("valid_resource.txt") as f:
+#         data = f.read()
+#         assert data == "Test data"
+
+#     os.remove(bp.root_path + "/valid_resource.txt")
+
+def test_open_resource_invalid_file(app, client):
+    """Test opening an invalid resource file."""
+    bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+    with pytest.raises(FileNotFoundError):
+        bp.open_resource("invalid_resource.txt")
+
+def test_open_resource_invalid_mode(app, client):
+    """Test opening a resource file with an invalid mode."""
+    bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+    with pytest.raises(ValueError):
+        bp.open_resource("valid_resource.txt", mode="w")
