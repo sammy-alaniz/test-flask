@@ -1,0 +1,29 @@
+import pytest
+from flask import Blueprint
+from werkzeug.exceptions import NotFound
+
+from blueprints import open_resource
+
+def test_open_resource_valid_file(app, client):
+    """Test opening a valid resource file."""
+    bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+    with open(bp.root_path + "/valid_resource.txt", "w") as f:
+        f.write("Test data")
+
+    with bp.open_resource("valid_resource.txt") as f:
+        data = f.read()
+        assert data == "Test data"
+
+    os.remove(bp.root_path + "/valid_resource.txt")
+
+def test_open_resource_invalid_file(app, client):
+    """Test opening an invalid resource file."""
+    bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+    with pytest.raises(FileNotFoundError):
+        bp.open_resource("invalid_resource.txt")
+
+def test_open_resource_invalid_mode(app, client):
+    """Test opening a resource file with an invalid mode."""
+    bp = Blueprint("test_blueprint", __name__, root_path=app.root_path)
+    with pytest.raises(ValueError):
+        bp.open_resource("valid_resource.txt", mode="w")
