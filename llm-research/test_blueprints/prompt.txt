@@ -1,0 +1,1 @@
+Use the attached text file for additional context. Please write a unit test for test_blueprints.py. I want the test to specifically go over open_resource in blueprints.py. Do not assume any other external files, if you need them write python to add those files.
