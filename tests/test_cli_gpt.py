@@ -1,3 +1,4 @@
+# ---------------------------------------------------------------------------- test-1
 import sys
 import os
 import pytest
@@ -136,7 +137,7 @@ def test_run_exclude_patterns():
     ctx = run_command.make_context("run", ["--exclude-patterns", __file__])
     assert ctx.params["exclude_patterns"] == [__file__]
 
-# ----------------------------------------------------------------------------
+# ---------------------------------------------------------------------------- test-2
 
 from flask.cli import _called_with_wrong_args
 
@@ -158,7 +159,7 @@ def test_called_with_wrong_args_zero_division_error():
     except ZeroDivisionError:
         assert _called_with_wrong_args(function_with_error) == False
 
-# ----------------------------------------------------------------------------
+# ---------------------------------------------------------------------------- test-3
 
 import pytest
 from types import ModuleType
